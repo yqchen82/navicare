@@ -4,7 +4,7 @@ A Streamlit RAG prototype for exploring Singapore's CareShield Life and ElderShi
 
 ## What's included
 - Refreshed UI inspired by the supplied NaviCare Francine reference: warm cream canvas, mint/teal accents, softer cards, updated typography, a branded sidebar and shared page styling.
-- Basic Admin/User login.
+- Separate Sign In page with Admin/User authentication and a state-aware Sign In / Sign Out action in the shared sidebar.
 - Admin document upload, indexing, listing and deletion.
 - RAG-based policy Q&A with source names and URLs.
 - Profile-assisted Scheme Navigator (birth year, residency, current cover and self-reported ADL context).
@@ -58,3 +58,18 @@ The `sample_docs/` directory contains attributed policy briefing notes for demon
 ## Security and advice limitations
 The environment-variable login is a classroom demonstration, not production authentication. Use an identity provider, password hashing, secure secret storage and appropriate access controls for real users. NaviCare is not a government service, insurer, medical assessor or financial adviser. It does not connect to Singpass/CPF accounts, calculate official personalised premiums, determine disability or approve claims. Verify policy details with CPF Board, MOH and AIC.
 # chatbot-project
+
+## Run locally
+
+1. Install dependencies: `pip install -r requirements.txt`
+2. Create a local `.env` using `.env.example` and add the required credentials.
+3. Start the app from this project directory: `streamlit run streamlit_app.py`.
+
+The app uses Streamlit's `st.navigation()` for routing and a shared branded sidebar
+renderer in `rag/ui.py`. All page links are maintained centrally in `streamlit_app.py`
+and rendered consistently across pages. The `.env`, Git history, and generated cache
+files are intentionally excluded from the distributable ZIP.
+
+
+## Navigation and sign-in
+The Home page is public and contains no login form. Use the Sign In item at the bottom of the shared sidebar to authenticate. Once signed in, the sidebar shows the active username and role with a Sign out button. Scheme Navigator and Policy Q&A require a signed-in user; Document Management remains Admin-only.

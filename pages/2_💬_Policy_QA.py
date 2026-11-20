@@ -1,10 +1,9 @@
 import streamlit as st
 from rag.auth import require_login
 from rag.qa import answer_question
-from rag.ui import apply_theme, hero, section, footer
+from rag.ui import apply_theme, render_sidebar, hero, section, footer
 
-st.set_page_config(page_title="Policy Q&A | NaviCare", page_icon="💬", layout="wide")
-apply_theme(); require_login()
+apply_theme(); render_sidebar(); require_login()
 hero("Ask. Understand. Feel more prepared.", "Ask plain-language questions about CareShield Life, ElderShield 300 / 400, eligibility, premiums, MediSave and claims.", eyebrow="NAVICARE POLICY ASSISTANT", pill="Answers are grounded in the Admin-managed reference library")
 section("Conversation", "What would you like to know?")
 if "messages" not in st.session_state: st.session_state.messages=[]

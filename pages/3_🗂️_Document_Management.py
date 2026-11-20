@@ -5,10 +5,9 @@ from rag.auth import require_admin
 from rag.config import DOCS_DIR, SAMPLE_DIR
 from rag.document_processor import make_chunks
 from rag.vector_store import add_documents, list_sources, delete_source
-from rag.ui import apply_theme, hero, section, footer
+from rag.ui import apply_theme, render_sidebar, hero, section, footer
 
-st.set_page_config(page_title="Policy Library | NaviCare", page_icon="🗂️", layout="wide")
-apply_theme(); require_admin()
+apply_theme(); render_sidebar(); require_admin()
 hero("Keep the knowledge base trustworthy.", "Manage the policy references NaviCare uses to answer questions. Prioritise current MOH, CPF Board and AIC publications.", eyebrow="ADMIN WORKSPACE", pill="Restricted to Admin users")
 section("Knowledge ingestion", "Add official policy references")
 st.markdown("Upload PDF, DOCX, TXT or Markdown files. Record the official source URL and ensure the publication or effective date is clear in the document.")

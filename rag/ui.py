@@ -23,7 +23,15 @@ def apply_theme():
     [data-testid="stSidebar"]{background:linear-gradient(180deg,#eff8f5 0%,#f7fbf9 100%);border-right:1px solid var(--line)}
     [data-testid="stSidebar"] *{color:#29475d}
     [data-testid="stSidebar"] [data-testid="stMarkdownContainer"] p{color:#64758a}
-    [data-testid="stSidebarNav"]{padding-top:.6rem}
+    /* Hide Streamlit's generated navigation; NaviCare renders its own links. */
+    [data-testid="stSidebarNav"]{display:none!important}
+    .navicare-brand{margin-top:2.8rem;margin-bottom:2rem}
+    .navicare-brand h1{font-family:'Space Grotesk',sans-serif!important;font-size:3.0rem!important;line-height:1.05!important;font-weight:750!important;color:#29475d!important;margin:0 0 2.5rem!important;white-space:nowrap}
+    .navicare-brand p{font-size:1.02rem!important;line-height:1.35!important;color:#8298a5!important;margin:0 0 .6rem!important;white-space:nowrap;letter-spacing:.005em}
+    .navicare-divider{border:0;border-top:1px solid #cbd9d5;margin:2.4rem 0 1.1rem}
+    [data-testid="stSidebar"] [data-testid="stPageLink"]{padding:.2rem 0;margin:.15rem 0}
+    [data-testid="stSidebar"] [data-testid="stPageLink"] a{color:#087f72!important;font-weight:750!important;font-size:1.12rem!important;text-decoration:none!important}
+    [data-testid="stSidebar"] [data-testid="stPageLink"] a:hover{color:#075e54!important}
     [data-testid="stSidebar"] a,[data-testid="stSidebar"] a *{color:#0f766e!important;font-weight:650}
     [data-testid="stSidebar"] hr{border-color:var(--line)}
     [data-testid="stSidebar"] [role="radiogroup"] label{padding:.55rem .7rem;border-radius:12px}
@@ -57,6 +65,43 @@ def apply_theme():
     @media(max-width:720px){.hero{padding:1.55rem 1.25rem}.block-container{padding-top:1rem}}
     </style>
     """, unsafe_allow_html=True)
+
+
+
+def render_sidebar():
+    """Render NaviCare's branded, consistent navigation on every page."""
+    logo = ASSET_DIR / "navicare_logo_mark.jpg"
+    with st.sidebar:
+        if logo.exists():
+            st.image(str(logo), width=115)
+        st.markdown(
+            """
+            <div class="navicare-brand">
+                <h1>NaviCare</h1>
+                <p>LONG-TERM CARE SCHEME NAVIGATOR</p>
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
+        st.markdown("<hr class='navicare-divider'>", unsafe_allow_html=True)
+        st.page_link("pages/0_🏠_Home.py", label="Home", icon="🏠")
+        st.page_link("pages/1_🧭_Scheme_Navigator.py", label="Scheme Navigator", icon="🧭")
+        st.page_link("pages/2_💬_Policy_QA.py", label="Policy Q&A", icon="💬")
+        st.page_link("pages/3_🗂️_Document_Management.py", label="Document Management", icon="🗂️")
+        st.page_link("pages/4_👥_About_Us.py", label="About Us", icon="👥")
+        st.page_link("pages/5_🧪_Methodology.py", label="Methodology", icon="🧪")
+        st.markdown("<hr class='navicare-divider'>", unsafe_allow_html=True)
+        if st.session_state.get("authenticated"):
+            st.caption(
+                f"Signed in as **{st.session_state.get('username', 'User')}** "
+                f"· {st.session_state.get('role', 'User')}"
+            )
+            if st.button("Sign out", key="sidebar_sign_out", use_container_width=True):
+                for key in ("authenticated", "username", "role", "messages", "profile", "saved_profile"):
+                    st.session_state.pop(key, None)
+                st.switch_page("pages/0_🏠_Home.py")
+        else:
+            st.page_link("pages/6_🔐_Sign_In.py", label="Sign In", icon="🔐")
 
 
 def hero(title, subtitle, eyebrow="NAVICARE · LONG-TERM CARE GUIDANCE", pill=None):

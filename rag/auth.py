@@ -15,7 +15,7 @@ def authenticate(username: str, password: str):
 
 def require_login():
     if not st.session_state.get("authenticated"):
-        st.warning("Please log in from the Home page to continue.")
+        st.warning("Please sign in from the side menu to continue.")
         st.stop()
 
 def require_admin():

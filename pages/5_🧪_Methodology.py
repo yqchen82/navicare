@@ -1,8 +1,8 @@
 import streamlit as st
-from rag.ui import apply_theme, hero, section, feature_card, footer
+from rag.ui import apply_theme, render_sidebar, hero, section, feature_card, footer
 
-st.set_page_config(page_title="Methodology | NaviCare", page_icon="🧪", layout="wide")
 apply_theme()
+render_sidebar()
 hero("Ground answers in evidence, not guesswork.", "NaviCare uses Retrieval-Augmented Generation (RAG) to find relevant policy passages before asking an AI model to explain them.", eyebrow="HOW NAVICARE WORKS", pill="Document retrieval + language generation")
 section("The RAG pipeline", "From policy document to answer")
 steps=[("01","Ingest","Admin uploads an MOH, CPF Board or AIC policy reference and records its source URL and date."),("02","Extract & chunk","Text is extracted from supported documents and split into smaller overlapping passages."),("03","Embed","OpenAI text-embedding-3-small converts each passage into a numerical vector representation."),("04","Retrieve","ChromaDB performs semantic similarity search to find passages relevant to the user's question and optional profile context."),("05","Generate","The retrieved passages and question are sent to the language model to produce a plain-language response."),("06","Verify","The response includes source references. Users are encouraged to check current rules with the relevant official agency.")]

@@ -1,10 +1,9 @@
 import streamlit as st
 from rag.auth import require_login
 from rag.qa import answer_question
-from rag.ui import apply_theme, hero, section, footer
+from rag.ui import apply_theme, render_sidebar, hero, section, footer
 
-st.set_page_config(page_title="Scheme Navigator | NaviCare", page_icon="🧭", layout="wide")
-apply_theme(); require_login()
+apply_theme(); render_sidebar(); require_login()
 hero("Your scheme, made clearer.", "Share a little context and ask a question. NaviCare will retrieve relevant policy guidance to help you understand what to check next.", eyebrow="PERSONALISED POLICY EXPLORATION", pill="Your details are self-reported and are not verified")
 section("Step 1 · Your context", "A few details help focus the search")
 with st.form("scheme_profile_form"):
