@@ -70,19 +70,10 @@ def apply_theme():
 
 def render_sidebar():
     """Render NaviCare's branded, consistent navigation on every page."""
-    logo = ASSET_DIR / "navicare_logo_mark.jpeg"
+    logo = ASSET_DIR / "navicare_logo_mark.jpg"
     with st.sidebar:
         if logo.exists():
-            st.image(str(logo), width=115)
-        st.markdown(
-            """
-            <div class="navicare-brand">
-                <h1>NaviCare</h1>
-                <p>LONG-TERM CARE SCHEME NAVIGATOR</p>
-            </div>
-            """,
-            unsafe_allow_html=True,
-        )
+            st.image(str(logo), width=1024)
         st.markdown("<hr class='navicare-divider'>", unsafe_allow_html=True)
         st.page_link("pages/0_🏠_Home.py", label="Home", icon="🏠")
         st.page_link("pages/1_🧭_Scheme_Navigator.py", label="Scheme Navigator", icon="🧭")
