@@ -21,19 +21,32 @@ if st.session_state.get("authenticated"):
 else:
     _, center, _ = st.columns([1, 1.15, 1])
     with center:
-        st.markdown("<div class='info-card'>", unsafe_allow_html=True)
+        # Maintain vertical spacing without the empty bubble
+        st.markdown(
+            "<div style='height: 24px;'></div>",
+            unsafe_allow_html=True
+        )
+
         st.markdown("### Sign in to NaviCare")
         st.write("Enter your configured username and password.")
+
         with st.form("navicare_sign_in_form", clear_on_submit=False):
-            username = st.text_input("Username", placeholder="Enter your username")
-            password = st.text_input("Password", type="password", placeholder="Enter your password")
+            username = st.text_input(
+                "Username",
+                placeholder="Enter your username"
+            )
+            password = st.text_input(
+                "Password",
+                type="password",
+                placeholder="Enter your password"
+            )
+
             submitted = st.form_submit_button(
                 "Sign in",
                 type="primary",
                 use_container_width=True,
             )
-        st.markdown("</div>", unsafe_allow_html=True)
-
+            
     if submitted:
         role = authenticate(username.strip(), password)
         if role:

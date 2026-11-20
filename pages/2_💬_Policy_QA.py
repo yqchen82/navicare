@@ -19,7 +19,7 @@ if question:
                 answer, citations=answer_question(question, st.session_state.get("profile"))
                 st.markdown(answer)
                 if citations:
-                    with st.expander("Sources used", expanded=True):
+                    with st.expander("Sources used", expanded=False):
                         for c in citations:
                             st.markdown(f"- **{c['source']}** (relevance: {c['score']})" + (f" · [Official source]({c['url']})" if c['url'] else ""))
                 st.session_state.messages.append({"role":"assistant","content":answer})

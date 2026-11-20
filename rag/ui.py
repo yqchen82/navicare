@@ -25,8 +25,8 @@ def apply_theme():
     [data-testid="stSidebar"] [data-testid="stMarkdownContainer"] p{color:#64758a}
     /* Hide Streamlit's generated navigation; NaviCare renders its own links. */
     [data-testid="stSidebarNav"]{display:none!important}
-    .navicare-brand{margin-top:2.8rem;margin-bottom:2rem}
-    .navicare-brand h1{font-family:'Space Grotesk',sans-serif!important;font-size:3.0rem!important;line-height:1.05!important;font-weight:750!important;color:#29475d!important;margin:0 0 2.5rem!important;white-space:nowrap}
+    .navicare-brand{margin-top:.45rem;margin-bottom:1rem}
+    .navicare-brand h1{font-family:'Space Grotesk',sans-serif!important;font-size:3.0rem!important;line-height:1.05!important;font-weight:750!important;color:#29475d!important;margin:0 0 .55rem!important;white-space:nowrap}
     .navicare-brand p{font-size:1.02rem!important;line-height:1.35!important;color:#8298a5!important;margin:0 0 .6rem!important;white-space:nowrap;letter-spacing:.005em}
     .navicare-divider{border:0;border-top:1px solid #cbd9d5;margin:2.4rem 0 1.1rem}
     [data-testid="stSidebar"] [data-testid="stPageLink"]{padding:.2rem 0;margin:.15rem 0}
@@ -70,7 +70,7 @@ def apply_theme():
 
 def render_sidebar():
     """Render NaviCare's branded, consistent navigation on every page."""
-    logo = ASSET_DIR / "navicare_logo_mark.jpg"
+    logo = ASSET_DIR / "navicare_logo_mark.jpeg"
     with st.sidebar:
         if logo.exists():
             st.image(str(logo), width=115)
