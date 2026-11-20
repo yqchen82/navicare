@@ -1,5 +1,10 @@
-openai
-streamlit
-pandas
-python-dotenv
-tiktoken
+streamlit==1.41.1
+openai>=1.58.1
+langchain>=0.3.14
+langchain-openai>=0.3.0
+langchain-chroma>=0.2.0
+langchain-text-splitters>=0.3.4
+chromadb>=0.6.3
+pypdf>=5.1.0
+python-docx>=1.1.2
+python-dotenv>=1.0.1
